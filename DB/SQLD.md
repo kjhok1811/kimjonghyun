@@ -143,4 +143,26 @@
   4. 단일 식별자는 항상 복합 식별자보다 성능이 우수하다.
   
 답 : 2
+
+# Q. 8
+> 아래와 같은테이블에 데이터가 있다. 각 SQL에 대한 결과값이 잘못된 것은?
+```txt
+  SQLD_1 Table              SQLD_2 Table
+  N1 1/2/3/4                N1 1/2/3
+  V1 A/ /B/C                V1 A/ /B
+```
+
+  1. SELECT * FROM SQLD_1 
+     WHERE V1 IN( SELECT V1 FROM SQLD_2)
   
+  <table>
+    <tr>
+       <th>N1
+       <th>V1
+    <tr>
+       <td>1
+       <td>A
+    <tr>
+       <td>2
+       <td>B
+  </table>
