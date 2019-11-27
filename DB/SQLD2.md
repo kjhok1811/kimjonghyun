@@ -39,6 +39,7 @@
 답 : 2
 ```txt
   Sort Merge Join은 테이블을 정렬(Sort)한 후에 정렬된 테이블을 병합(Merge)하면서 조인을 실행한다.
+  주로 배치관련 작업을 수행할때 사용한다.
 ```
 
 ### Q. 4 
@@ -100,3 +101,63 @@ DEPT GROUP BY DEPTNO
   종류로는 프로시저, 함수, 트리거가 있다.
 ```
 
+### Q. 8
+> 두개의 테이블 간의 참조 관계가 있을경우, 참조한 값을 삭제하기 위한 옵션은 무엇인가?
+답 : ON DELETE CASCADE
+  
+### Q. 9 
+> 다음의 inline View의 조회 개수는 몇개인가?
+```txt
+  SELECT * FROM ( SELECT ROWNUM , DEPTNO FROM DEPT ) a WHERE ROWNUM < 5
+```
+
+답 : 4
+
+### Q. 10
+> Oracle 데이터베이스를 사용할때 SQL Server의 except 명령어와 동일한 명령어는?
+답 : MINUS
+```txt
+  except는 차집합을 구하는것이다. Oracle에는 MINUS가 있다.
+```
+
+### Q. 11
+> USER1의 EMP테이블을 USER2에서 접근할 수 있도록 권한을 부여하는 명령어는?
+답 : GRANT SELECT ON USER1.EMP TO USER2
+
+### Q. 12
+> 해시조인(Hash Join)에 대한 설명으로 올바르지 않은것은?
+  1. 해시조인은 해시함수를 사용해서 주소를 계산하고 조인을 수행한다.
+  2. 해시조인을 할때는 선행 테이블의 크기가 작아야한다.
+  3. 해시조인은 CPU연산이 많이 발생한다.
+  4. 해시조인은 랜덤엑세스로 인하여 부하가 발생한다.
+  
+답 : 4
+```txt
+  랜덤엑세스가 많이 발생하는 조인은 Nested Loop Join인이다. 쉽게 생각해서 자바의 이중 for문과 같다.
+```
+
+### Q. 13
+> 다음의 서브쿼리의 유형은 무엇인가?
+  SELECT a.empno, a.empname FROM emp a 
+  WHERE a.empno = ( SELECT 1 FROM emp_t b WHERE a.empno = b.empno )
+
+답 : Correlated Sub Query
+```txt
+  상호연관 서브쿼리(Correlated Sub Query)는 메인쿼리 값을 서브쿼리가 사용하고 서브쿼리의 값을 받아서 메인쿼리가 게산되는 쿼리이다. 
+```
+
+### Q. 14
+> 아래의 함수가 빈칸에서 사용되었을떄 값이 다른함수는?
+  SELECT ( )(5.24) FROM DUAL
+  1. TRUNC
+  2. CEIL
+  3. FLOOR
+  4. ROUND
+  
+답 : 2
+```txt
+  1. TRUNC : 숫자를 소수 M째 자리에서 잘라서 리턴한다. default = 0
+  2. ROUND : 숫자를 소수 M째 자리에서 반올림하여 리턴한다. 
+  3. FLOOR : 숫자보다 작거나 같은 최대의 정수를 리턴한다.
+  4. CEIL : 숫자보다 크거나 같은 최소의 정수를 리턴한다.
+```
